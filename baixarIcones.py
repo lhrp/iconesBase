@@ -1,7 +1,5 @@
-import os
-import shutil
-import requests
-import zipfile
+import os, shutil, requests, zipfile, time
+from tqdm import tqdm
 
 def baixar_e_extrair_icones():
     # URL do repositório
@@ -33,7 +31,8 @@ def baixar_e_extrair_icones():
     
     # Copia os arquivos da pasta extraída para a primeira pasta imagens
     imagens_path = os.path.join(pasta_destino, "iconesBase-main", "imagens")
-    for file_name in os.listdir(imagens_path):
+    for file_name in tqdm(os.listdir(imagens_path)):
+        time.sleep(0.02)
         file_path = os.path.join(imagens_path, file_name)
         shutil.copy(file_path, pasta_destino)
     
